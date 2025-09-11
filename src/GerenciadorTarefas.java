@@ -31,13 +31,13 @@ public class GerenciadorTarefas {
                     gerenciador.cadastrarTarefa(tarefas); // Metodo para adicionar tarefas a lista de tarefas
                     break;
                 case 2:
-                    // Listar Tarefas
+                    gerenciador.listarTarefas(tarefas)// Listar Tarefas
                     break;
                 case 3:
                     // Detalhar Tarefa
                     break;
                 case 4:
-                    // Excluir Tarefa
+                    gerenciador.excluirTarefas(tarefas)// Excluir Tarefa
                     break;
                 case 5:
                     return; // Sair do sistema
@@ -45,6 +45,25 @@ public class GerenciadorTarefas {
                     System.out.println("Por favor escolha uma opção válida."); // Mensagem padrão em caso de escolha invalida
             }
         }
+    }
+
+    public void excluirTarefas(List<Tarefa> tarefas) {
+        Scanner sc = new Scanner(System.in);
+        listarTarefas(tarefas);
+        boolean verificar = false;
+        System.out.println("Escolha uma tarefa para remover:\n");
+        while (!verificar){
+            int remover;
+            remover = sc.nextInt();
+            if (remover > tarefas.size()){
+                System.out.println("Não há uma tarefa "+ remover);
+            } else {
+                tarefas.remove(remover);
+                System.out.println("Tarefa "+ remover + " removida com sucesso!\n");
+                verificar = true;
+            }
+        }
+
     }
 
     public void cadastrarTarefa(List<Tarefa> tarefas) {
@@ -65,6 +84,12 @@ public class GerenciadorTarefas {
             }
             tarefas.add(tarefa);
             loopCadastro = false;
+        }
+    }
+
+    public void listarTarefas(List<Tarefa> tarefas){
+        for(Tarefa tarefa : tarefas){
+            System.out.println(tarefa.getId() + " - "+ tarefa.getTarefa());
         }
     }
 }
