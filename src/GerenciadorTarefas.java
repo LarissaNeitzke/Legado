@@ -17,47 +17,41 @@ public class GerenciadorTarefas {
         
         while (loop) {
             System.out.println("\n--- Menu Principal ---");
-            System.out.println("4. Detalhar Tarefas;");
-            System.out.println("6. Sair.");
+            System.out.println("2. Listar Tarefas;");
+            System.out.println("3. Detalhar Tarefas;");
+            System.out.println("5. Sair.");
             System.out.print("Escolha uma opção: ");
             entrada = scanner.nextInt();
 
             switch (entrada){
-                case 4:
+                case 2:
+                    gerenciadorTarefas.listarTarefas(tarefas);
+                    break;
+                case 3:
                     gerenciadorTarefas.detalharTarefa(tarefas);
                     break;
-                case 6:
+                case 5:
+                    System.out.println("Fechando Sistema...");
                     loop = false;
                     break;
                 default:
                     System.out.println("Opção Inválida!");
                     break;
             }
-
-//            if (entrada.equals("1")) {
-//                System.out.println("\n--- Lista de Tarefas ---");
-//                if (tarefas.isEmpty()) {
-//                    System.out.println("Nenhuma tarefa cadastrada.");
-//                } else {
-//                    for (int i = 0; i < tarefas.size(); i++) {
-//                        System.out.println((i + 1) + ". " + tarefas.get(i));
-//                    }
-//                }
-//            } else if (entrada.equals("2")) {
-//                System.out.println("Saindo do programa. Até mais!");
-//                break;
-//            } else {
-//                System.out.println("Opção inválida. Tente novamente.");
-//            }
         }
     }
 
     public void detalharTarefa(List<Tarefa> tarefas){
-        tarefas.add(new Tarefa(1, "Teste", "Testando aqui"));
+        System.out.println("\n---------------   Detalhando Tarefas   ---------------\n");
         for(Tarefa tarefa : tarefas){
-            System.out.println(tarefa.getDatalhes());
+            System.out.println(tarefa.getId() + " - "+ tarefa.getTarefa() + " / "+ tarefa.getDatalhes() + " / "+ tarefa.getStatus());
         }
     }
 
-
+    public void listarTarefas(List<Tarefa> tarefas){
+        System.out.println("\n---------------   Listando Tarefas   ---------------\n");
+        for(Tarefa tarefa : tarefas){
+            System.out.println(tarefa.getId() +" - "+ tarefa.getTarefa());
+        }
+    }
 }
