@@ -1,42 +1,65 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class GerenciadorTarefas {
 
+
     public static void main(String[] args) {
+        GerenciadorTarefas gerenciadorTarefas = new GerenciadorTarefas();
         System.out.println("Bem-vindo ao sistema de gerenciamento de tarefas LEGADO!");
-        System.out.println("Este código não usa classes e métodos para simular um projeto antigo.");
-        ArrayList<String> tarefas = new ArrayList<>();
+        ArrayList<Tarefa> tarefas = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        String entrada = "";
+        int entrada;
+        boolean loop = true;
         
-        while (true) {
+        while (loop) {
             System.out.println("\n--- Menu Principal ---");
             System.out.println("1. Listar Tarefas");
-            System.out.println("2. Sair");
+            System.out.println("5. Excluir Tarefas");
+            System.out.println("6. Sair");
             System.out.print("Escolha uma opção: ");
-            entrada = scanner.nextLine();
+            entrada = scanner.nextInt();
 
-            if (entrada.equals("1")) {
-                System.out.println("\n--- Lista de Tarefas ---");
-                if (tarefas.isEmpty()) {
-                    System.out.println("Nenhuma tarefa cadastrada.");
-                } else {
-                    for (int i = 0; i < tarefas.size(); i++) {
-                        System.out.println((i + 1) + ". " + tarefas.get(i));
-                    }
-                }
-            } else if (entrada.equals("2")) {
-                System.out.println("Saindo do programa. Até mais!");
-                break;
-            } else {
-                System.out.println("Opção inválida. Tente novamente.");
+            switch (entrada){
+                case 5:
+                    gerenciadorTarefas.excluirTarefas(tarefas);
+                    break;
+                case 6:
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("Opção Invalida");
+                    break;
             }
         }
-        scanner.close();
     }
 
+    public void excluirTarefas(List<Tarefa> tarefas) {
+        Scanner sc = new Scanner(System.in);
+        listarTarefas(tarefas);
+        boolean verificar = false;
+        System.out.println("Escolha uma tarefa para remover:\n");
+        while (!verificar){
+            int remover;
+            remover = sc.nextInt();
+            if (remover > tarefas.size()){
+                System.out.println("Não há uma tarefa "+ remover);
+            } else {
+                tarefas.remove(remover);
+                System.out.println("Tarefa "+ remover + " removida com sucesso!\n");
+                verificar = true;
+            }
+        }
+
+    }
+
+    public void listarTarefas(List<Tarefa> tarefas){
+        for(Tarefa tarefa : tarefas){
+            System.out.println(tarefa.getId() + " - "+ tarefa.getTarefa());
+        }
+    }
 
 }
