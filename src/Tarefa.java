@@ -3,14 +3,17 @@ package src;
 public class Tarefa {
     int id;
     String tarefa;
-    String datalhes;
+    String detalhes;
     boolean status;
 
     public Tarefa(int id, String tarefa, String datalhes) {
         this.id = id;
         this.tarefa = tarefa;
-        this.datalhes = datalhes;
+        this.detalhes = datalhes;
         status = false;
+    }
+
+    public Tarefa() {
     }
 
     public int getId() {
@@ -29,12 +32,12 @@ public class Tarefa {
         this.tarefa = tarefa;
     }
 
-    public String getDatalhes() {
-        return datalhes;
+    public String getDetalhes() {
+        return detalhes;
     }
 
-    public void setDatalhes(String datalhes) {
-        this.datalhes = datalhes;
+    public void setDetalhes(String detalhes) {
+        this.detalhes = detalhes;
     }
 
     public String getStatus() {
