@@ -3,6 +3,8 @@ Trabalho Avaliativo UC10-Git
 ### Membros do Projeto:
 <p>Gabriel Oliveira, Larissa Neitzke, Lucas Schmidt e Lucca Fagundes.</p>
 
+### Descrição do Projeto:
+<p>Este projeto trata-se de uma lista de tarefas, inicialmente criada para gerenciar as demandas de uma farmácia.</p>
 <p></p>
 
 ## Lista de Tarefas Realizadas:
