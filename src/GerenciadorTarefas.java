@@ -15,8 +15,8 @@ public class GerenciadorTarefas {
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
         int entrada;
-        
-                while (loop) {
+
+        while (loop) {
             System.out.println("\n--- Menu Principal ---");
             System.out.println("1. Cadastrar Tarefas");
             System.out.println("2. Listar Tarefas");
@@ -31,13 +31,13 @@ public class GerenciadorTarefas {
                     gerenciador.cadastrarTarefa(tarefas); // Metodo para adicionar tarefas a lista de tarefas
                     break;
                 case 2:
-                    gerenciador.listarTarefas(tarefas)// Listar Tarefas
+                    gerenciador.listarTarefas(tarefas);// Listar Tarefas
                     break;
                 case 3:
-                    gerenciador.detalharTarefa(tarefas)// Detalhar Tarefa
+                    gerenciador.detalharTarefa(tarefas);// Detalhar Tarefa
                     break;
                 case 4:
-                    gerenciador.excluirTarefas(tarefas)// Excluir Tarefa
+                    gerenciador.excluirTarefas(tarefas);// Excluir Tarefa
                     break;
                 case 5:
                     return; // Sair do sistema
@@ -47,39 +47,32 @@ public class GerenciadorTarefas {
         }
     }
 
-    public void detalharTarefa(List<Tarefa> tarefas){
+    public void detalharTarefa(List<Tarefa> tarefas) {
         System.out.println("\n---------------   Detalhando Tarefas   ---------------\n");
-        for(Tarefa tarefa : tarefas){
-            System.out.println(tarefa.getId() + " - "+ tarefa.getTarefa() + " / "+ tarefa.getDetalhes() + " / "+ tarefa.getStatus());
+        for (Tarefa tarefa : tarefas) {
+            System.out.println(tarefa.getId() + " - " + tarefa.getTarefa() + " / " + tarefa.getDetalhes() + " / " + tarefa.getStatus());
         }
     }
 
-    public void listarTarefas(List<Tarefa> tarefas){
-        System.out.println("\n---------------   Listando Tarefas   ---------------\n");
-        for(Tarefa tarefa : tarefas){
-            System.out.println(tarefa.getId() +" - "+ tarefa.getTarefa());
-     }
-
-    public void excluirTarefas(List<Tarefa> tarefas) {
+    public void excluirTarefas (List < Tarefa > tarefas) {
         Scanner sc = new Scanner(System.in);
         listarTarefas(tarefas);
         boolean verificar = false;
         System.out.println("Escolha uma tarefa para remover:\n");
-        while (!verificar){
+        while (!verificar) {
             int remover;
             remover = sc.nextInt();
-            if (remover > tarefas.size()){
-                System.out.println("Não há uma tarefa "+ remover);
+            if (remover > tarefas.size()) {
+                System.out.println("Não há uma tarefa " + remover);
             } else {
-                tarefas.remove(remover);
-                System.out.println("Tarefa "+ remover + " removida com sucesso!\n");
+                tarefas.remove(remover-1);
+                System.out.println("Tarefa " + remover + " removida com sucesso!\n");
                 verificar = true;
             }
         }
-
     }
 
-    public void cadastrarTarefa(List<Tarefa> tarefas) {
+    public void cadastrarTarefa (List<Tarefa> tarefas) {
 
         Tarefa tarefa = new Tarefa();
         Scanner sc = new Scanner(System.in);
@@ -87,10 +80,22 @@ public class GerenciadorTarefas {
 
         while (loopCadastro) {
             System.out.println("--- Cadastrar Tarefa ---");
-            System.out.print("Tarefa: ");
+            System.out.print("Tarefa: \n");
             tarefa.setTarefa(sc.nextLine());
             System.out.println("Descrição: ");
             tarefa.setDetalhes(sc.nextLine());
+
+            if(!tarefas.isEmpty()) {
+                for (Tarefa verificarId : tarefas) {
+                    if (verificarId.getId() == tarefas.size() + 1) {
+                        tarefa.setId(tarefas.size() + 2);
+                    } else {
+                        tarefa.setId(tarefas.size() + 1);
+                    }
+                }
+            } else {
+                tarefa.setId(1);
+            }
 
             if (tarefa.getTarefa().isEmpty()) {
                 System.out.println("\nFormato de tarefa inválido! Voltando ao Menu Inicial...");
@@ -99,4 +104,11 @@ public class GerenciadorTarefas {
             loopCadastro = false;
         }
     }
- }
+
+    public void listarTarefas(List<Tarefa> tarefas) {
+        System.out.println("\n---------------   Listando Tarefas   ---------------\n");
+        for (Tarefa tarefa : tarefas) {
+            System.out.println(tarefa.getId() + " - " + tarefa.getTarefa());
+        }
+    }
+}
