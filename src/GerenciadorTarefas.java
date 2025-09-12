@@ -13,10 +13,10 @@ public class GerenciadorTarefas {
         System.out.println("Bem-vindo ao sistema de gerenciamento de tarefas LEGADO!");
         System.out.println("Este código não usa classes e métodos para simular um projeto antigo.");
         Scanner scanner = new Scanner(System.in);
-        int entrada;
         boolean loop = true;
-
-        while (loop) {
+        int entrada;
+        
+                while (loop) {
             System.out.println("\n--- Menu Principal ---");
             System.out.println("1. Cadastrar Tarefas");
             System.out.println("2. Listar Tarefas");
@@ -34,7 +34,7 @@ public class GerenciadorTarefas {
                     gerenciador.listarTarefas(tarefas)// Listar Tarefas
                     break;
                 case 3:
-                    // Detalhar Tarefa
+                    gerenciador.detalharTarefa(tarefas)// Detalhar Tarefa
                     break;
                 case 4:
                     gerenciador.excluirTarefas(tarefas)// Excluir Tarefa
@@ -46,6 +46,19 @@ public class GerenciadorTarefas {
             }
         }
     }
+
+    public void detalharTarefa(List<Tarefa> tarefas){
+        System.out.println("\n---------------   Detalhando Tarefas   ---------------\n");
+        for(Tarefa tarefa : tarefas){
+            System.out.println(tarefa.getId() + " - "+ tarefa.getTarefa() + " / "+ tarefa.getDetalhes() + " / "+ tarefa.getStatus());
+        }
+    }
+
+    public void listarTarefas(List<Tarefa> tarefas){
+        System.out.println("\n---------------   Listando Tarefas   ---------------\n");
+        for(Tarefa tarefa : tarefas){
+            System.out.println(tarefa.getId() +" - "+ tarefa.getTarefa());
+     }
 
     public void excluirTarefas(List<Tarefa> tarefas) {
         Scanner sc = new Scanner(System.in);
@@ -86,10 +99,4 @@ public class GerenciadorTarefas {
             loopCadastro = false;
         }
     }
-
-    public void listarTarefas(List<Tarefa> tarefas){
-        for(Tarefa tarefa : tarefas){
-            System.out.println(tarefa.getId() + " - "+ tarefa.getTarefa());
-        }
-    }
-}
+ }
